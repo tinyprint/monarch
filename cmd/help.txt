@@ -1,0 +1,6 @@
+Usage:
+  go run ./cmd/db <command>
+
+Commands:
+  migrate    Run any unmigrated migrations
+  create     Create a new migration file

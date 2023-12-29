@@ -1,0 +1,2 @@
+Usage:
+  go run ./cmd/db create <name>

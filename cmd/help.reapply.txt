@@ -1,0 +1,10 @@
+Usage:
+  go run ./cmd/db reapply <name>
+
+<name> can be the name of the migration (including timestamp) or a path to the
+migration.
+
+Using a path to the migration is merely a convenience so autocomplete
+can be used on the command line. The path and file extension are dropped before
+finding the migration is reapplied. This prevents migrations from a directory
+outside the defined migration directory from being ran.
