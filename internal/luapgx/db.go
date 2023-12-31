@@ -62,7 +62,9 @@ func dbQuery(ctx context.Context, db Querier) func(*lua.LState) int {
 		columns := rows.FieldDescriptions()
 		columnCount := len(columns)
 
-		L.Push(L.NewFunction(func(iter *lua.LState) int {
+		resultTable := L.NewTable()
+
+		L.SetField(resultTable, "rows", L.NewFunction(func(iter *lua.LState) int {
 			if !rows.Next() {
 				rows.Close()
 				return 0
@@ -102,13 +104,20 @@ func dbQuery(ctx context.Context, db Querier) func(*lua.LState) int {
 			return 1
 		}))
 
+		L.SetField(resultTable, "close", L.NewFunction(func(_ *lua.LState) int {
+			rows.Close()
+			return 0
+		}))
+
 		columnsTable := L.CreateTable(columnCount, 0)
 		for i, column := range columns {
 			columnsTable.Insert(i+1, lua.LString(column.Name))
 		}
-		L.Push(columnsTable)
+		L.SetField(resultTable, "columns", columnsTable)
 
-		return 2
+		L.Push(resultTable)
+
+		return 1
 	}
 }
 

@@ -1,7 +1,7 @@
 db.exec("SET CLIENT_ENCODING TO 'UTF-8'", {})
 db.exec("SET TIMEZONE TO 'America/Denver'", {})
 
-local rows, columns = db.query([===[
+local result = db.query([===[
     SELECT
         32767::smallint AS smallint,
         2147483647::integer AS integer,
@@ -76,26 +76,26 @@ local expected = {
 }
 
 for i, expectedColumn in ipairs(expected) do
-    if columns[i] ~= expectedColumn.name then
+    if result.columns[i] ~= expectedColumn.name then
         error(string.format(
             "column name at index %d expected to be %q; got %q",
             i,
             expectedColumn.name,
-            columns[i]
+            result.columns[i]
         ))
     end
 end
 
-if #columns ~= #expected then
+if #result.columns ~= #expected then
     error(string.format(
-        "query expected to return %d columns; got %d",
-        #columns,
+        "query expected to return %d result.columns; got %d",
+        #result.columns,
         #expected
     ))
 end
 
-for row in rows do
-    for i = 1, #columns do
+for row in result.rows do
+    for i = 1, #result.columns do
         if type(row[expected[i].name]) == "table" and type(expected[i].value) == "table" then
             actualT = row[expected[i].name]
             expectedT = expected[i].value
