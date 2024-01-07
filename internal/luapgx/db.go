@@ -14,13 +14,8 @@ type Querier interface {
 
 func dbExec(ctx context.Context, db Querier) func(*lua.LState) int {
 	return func(L *lua.LState) int {
-		sql := L.ToString(1)
-		params := L.Get(2)
-		paramsTable, ok := params.(*lua.LTable)
-		if !ok {
-			L.RaiseError("params is not a table")
-			return 0
-		}
+		sql := L.CheckString(1)
+		paramsTable := L.OptTable(2, L.NewTable())
 
 		var paramsSlice []interface{}
 		paramsTable.ForEach(func(i lua.LValue, v lua.LValue) {
@@ -39,13 +34,8 @@ func dbExec(ctx context.Context, db Querier) func(*lua.LState) int {
 
 func dbQuery(ctx context.Context, db Querier) func(*lua.LState) int {
 	return func(L *lua.LState) int {
-		sql := L.ToString(1)
-		params := L.Get(2)
-		paramsTable, ok := params.(*lua.LTable)
-		if !ok {
-			L.RaiseError("params is not a table")
-			return 0
-		}
+		sql := L.CheckString(1)
+		paramsTable := L.OptTable(2, L.NewTable())
 
 		var paramsSlice []interface{}
 		paramsTable.ForEach(func(i lua.LValue, v lua.LValue) {
