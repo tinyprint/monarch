@@ -5,7 +5,7 @@ import (
 
 	lua "github.com/yuin/gopher-lua"
 
-	luapgx "github.com/tinyprint/monarch/internal/luapgx"
+	"github.com/tinyprint/monarch/monarch/internal/luapgx"
 )
 
 type runLuaConfig struct {

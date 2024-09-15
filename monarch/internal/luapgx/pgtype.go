@@ -3,6 +3,7 @@ package luapgx
 import (
 	"errors"
 	"fmt"
+
 	"github.com/jackc/pgx/v5/pgtype"
 	lua "github.com/yuin/gopher-lua"
 )

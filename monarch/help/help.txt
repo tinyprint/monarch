@@ -1,5 +1,5 @@
 Usage:
-  go run ./cmd/db <command>
+  go run github.com/tinyprint/monarch <command>
 
 Commands:
   migrate    Run any unmigrated migrations

@@ -9,16 +9,17 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/tinyprint/monarch"
+
+	"github.com/tinyprint/monarch/monarch"
 )
 
-//go:embed help.txt
+//go:embed monarch/help/help.txt
 var helpText string
 
-//go:embed help.create.txt
+//go:embed monarch/help/help.create.txt
 var helpCreateText string
 
-//go:embed help.reapply.txt
+//go:embed monarch/help/help.reapply.txt
 var helpReapplyText string
 
 func main() {

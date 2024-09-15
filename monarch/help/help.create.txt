@@ -1,0 +1,2 @@
+Usage:
+  go run github.com/tinyprint/monarch create <name>
