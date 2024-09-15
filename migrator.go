@@ -3,10 +3,11 @@ package monarch
 import (
 	"context"
 	"fmt"
-	"github.com/jackc/pgx/v5"
 	"path"
 	"regexp"
 	"strings"
+
+	"github.com/jackc/pgx/v5"
 )
 
 var regexpMigValidateName = regexp.MustCompile("^[a-zA-Z0-9_]+$")

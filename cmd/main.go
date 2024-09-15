@@ -6,10 +6,10 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"monarch"
 	"os"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/tinyprint/monarch"
 )
 
 //go:embed help.txt

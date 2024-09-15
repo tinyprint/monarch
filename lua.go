@@ -2,8 +2,10 @@ package monarch
 
 import (
 	"context"
+
 	lua "github.com/yuin/gopher-lua"
-	luapgx "monarch/internal/luapgx"
+
+	luapgx "github.com/tinyprint/monarch/internal/luapgx"
 )
 
 type runLuaConfig struct {

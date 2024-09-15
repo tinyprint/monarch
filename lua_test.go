@@ -2,10 +2,11 @@ package monarch
 
 import (
 	"context"
-	"github.com/jackc/pgx/v5"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/jackc/pgx/v5"
 )
 
 func TestSupportedTypesReturnValuesAsExpected(t *testing.T) {

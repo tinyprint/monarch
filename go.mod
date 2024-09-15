@@ -1,4 +1,4 @@
-module monarch
+module github.com/tinyprint/monarch
 
 go 1.21
 
