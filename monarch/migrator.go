@@ -163,8 +163,7 @@ func (m *Migrator) Reapply(ctx context.Context, name string) error {
 	}
 	migrationPath := m.files.migrationPath(migrationName)
 	err = runLua(ctx, m.db, runLuaConfig{
-		file:    migrationPath,
-		reapply: true,
+		file: migrationPath,
 	})
 	if err != nil {
 		return migrationFailed(

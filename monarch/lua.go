@@ -9,8 +9,7 @@ import (
 )
 
 type runLuaConfig struct {
-	file    string
-	reapply bool
+	file string
 }
 
 func luaEnv() (*lua.LState, error) {
@@ -39,24 +38,12 @@ func luaEnv() (*lua.LState, error) {
 	return L, nil
 }
 
-func luaAddMonarchConfig(L *lua.LState, config runLuaConfig) {
-	reapply := lua.LFalse
-	if config.reapply {
-		reapply = lua.LTrue
-	}
-
-	table := L.NewTable()
-	L.SetField(table, "reapply", reapply)
-	L.SetGlobal("monarch", table)
-}
-
 func runLua(ctx context.Context, db luapgx.Querier, config runLuaConfig) error {
 	L, err := luaEnv()
 	if err != nil {
 		return err
 	}
 
-	luaAddMonarchConfig(L, config)
 	luapgx.NewDBTable(ctx, L, "db", db)
 
 	if err := L.DoFile(config.file); err != nil {

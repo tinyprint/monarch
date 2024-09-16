@@ -1,11 +1,5 @@
 -- {{ .MigrationName }}
 
-if monarch.reapply then
-    db.exec([===[
-        SELECT $1
-    ]===], {"clean up previous run here before reapplying the originally applied queries"});
-end
-
 db.exec([===[
     SELECT $1
 ]===], {"placeholder"});
